@@ -1,0 +1,31 @@
+node_modules/
+.expo/
+dist/
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+.vscode/
+web-build/
+ui-debug.log
+
+# Temporary files
+package-lock.json
+
+# macOS
+.DS_Store
+
+# Temporary files created by Metro to check the health of the file watcher
+.metro-health-check*
+
+# Firebase
+firebase-debug.log
+firestore-debug.log
+
+# Cypress
+cypress/e2e/1-getting-started
+cypress/e2e/2-advanced-examples
+cypress/fixtures/example.json
