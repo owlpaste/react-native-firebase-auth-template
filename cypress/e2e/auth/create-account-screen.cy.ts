@@ -11,7 +11,7 @@ describe('Create account functionality', () => {
    });
 
    it('Can see register prompt', () => {
-      cy.findByTestId(uiEl.auth.pages.signUp)
+      cy.findByTestId(uiEl.auth.pageId.signUp)
          .should('be.visible')
          .within(() => {
             cy.findByText(uiEl.auth.texts.titleSignup)
@@ -30,22 +30,22 @@ describe('Create account functionality', () => {
    });
 
    it('Incorrect email address', () => {
-      cy.findByTestId(uiEl.auth.pages.signUp).within(() => {
+      cy.findByTestId(uiEl.auth.pageId.signUp).within(() => {
          cy.findByPlaceholderText(uiEl.auth.texts.placeholderEmailAddress).type(
             testData.notValidEmailAddress,
             {
-               delay: configs.typingDelay,
+               delay: configs.typingDelayMs,
             }
          );
          cy.findByPlaceholderText(
             uiEl.auth.texts.placeholderEnterPassword
          ).type(testData.correctPassword, {
-            delay: configs.typingDelay,
+            delay: configs.typingDelayMs,
          });
          cy.findByPlaceholderText(
             uiEl.auth.texts.placeholderConfirmPassword
          ).type(testData.correctPassword, {
-            delay: configs.typingDelay,
+            delay: configs.typingDelayMs,
          });
          cy.findByRole('button', {
             name: uiEl.auth.texts.buttonCreateAccount,
@@ -57,22 +57,22 @@ describe('Create account functionality', () => {
    });
 
    it('Passwords do not match', () => {
-      cy.findByTestId(uiEl.auth.pages.signUp).within(() => {
+      cy.findByTestId(uiEl.auth.pageId.signUp).within(() => {
          cy.findByPlaceholderText(uiEl.auth.texts.placeholderEmailAddress).type(
             testData.correctEmailAddress,
             {
-               delay: configs.typingDelay,
+               delay: configs.typingDelayMs,
             }
          );
          cy.findByPlaceholderText(
             uiEl.auth.texts.placeholderEnterPassword
          ).type(testData.correctPassword, {
-            delay: configs.typingDelay,
+            delay: configs.typingDelayMs,
          });
          cy.findByPlaceholderText(
             uiEl.auth.texts.placeholderConfirmPassword
          ).type(testData.incorrectPassword, {
-            delay: configs.typingDelay,
+            delay: configs.typingDelayMs,
          });
          cy.findByRole('button', {
             name: uiEl.auth.texts.buttonCreateAccount,

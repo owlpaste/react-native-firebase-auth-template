@@ -26,58 +26,44 @@ function ResetPassword({ navigation }: { navigation: any }) {
    };
 
    return (
-      <View style={styles.outer} testID={uiEl.auth.pages.recoverPassword}>
-         <View style={styles.inner}>
-            <View style={styles.header}>
-               <Text
-                  testID={uiEl.auth.selectors.textPageTitle}
-                  style={styles.header}
-               >
-                  {uiEl.auth.texts.titleResetPass}
-               </Text>
-            </View>
-
-            {error !== null && (
-               <View>
-                  <Text
-                     testID={uiEl.auth.selectors.textError}
-                     style={styles.error}
-                  >
-                     {error}
-                  </Text>
-               </View>
-            )}
-
-            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-               <Text style={styles.link}>
-                  {uiEl.auth.texts.linkBackToLogin}
-               </Text>
-            </TouchableOpacity>
-
-            {submitted ? (
-               <Text>{uiEl.auth.texts.textPassReset}</Text>
-            ) : (
-               <>
-                  <TextInput
-                     value={email}
-                     onChangeText={setEmail}
-                     keyboardType='email-address'
-                     testID={uiEl.auth.selectors.inputEmailAddress}
-                     placeholder={uiEl.auth.texts.placeholderEmailAddress}
-                     autoCapitalize='none'
-                     placeholderTextColor='#aaa'
-                     style={styles.input}
-                  />
-
-                  <Button
-                     title={uiEl.auth.texts.titleResetPass}
-                     testID={uiEl.auth.selectors.buttonResetPass}
-                     onPress={resetUserPassword}
-                     disabled={!email}
-                  />
-               </>
-            )}
+      <View style={styles.inner} testID={uiEl.auth.pageId.recoverPassword}>
+         <View>
+            <Text style={styles.header}>{uiEl.auth.texts.titleResetPass}</Text>
          </View>
+
+         {error !== null && (
+            <View>
+               <Text style={styles.error}>{error}</Text>
+            </View>
+         )}
+
+         <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+            <Text style={styles.link}>{uiEl.auth.texts.linkBackToLogin}</Text>
+         </TouchableOpacity>
+
+         {submitted ? (
+            <Text>{uiEl.auth.texts.textPassReset}</Text>
+         ) : (
+            <>
+               <TextInput
+                  autoCapitalize='none'
+                  keyboardType='email-address'
+                  onChangeText={setEmail}
+                  placeholder={uiEl.auth.texts.placeholderEmailAddress}
+                  placeholderTextColor='#aaa'
+                  style={styles.input}
+                  testID={uiEl.auth.selectors.inputEmailAddress}
+                  value={email}
+               />
+
+               <Button
+                  disabled={!email}
+                  onPress={resetUserPassword}
+                  testID={uiEl.auth.selectors.buttonResetPass}
+                  title={uiEl.auth.texts.titleResetPass}
+               />
+            </>
+         )}
       </View>
    );
 }

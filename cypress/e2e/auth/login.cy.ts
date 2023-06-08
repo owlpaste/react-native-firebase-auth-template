@@ -6,7 +6,7 @@ describe('Test login functionality', () => {
    before(() => {
       // Create a user
       cy.visit(configs.website);
-      cy.findByTestId(uiEl.auth.pages.login)
+      cy.findByTestId(uiEl.auth.pageId.login)
          .should('be.visible')
          .within(() => {
             cy.findByRole('button', {
@@ -14,7 +14,7 @@ describe('Test login functionality', () => {
             }).click();
          });
 
-      cy.findByTestId(uiEl.auth.pages.signUp)
+      cy.findByTestId(uiEl.auth.pageId.signUp)
          .should('be.visible')
          .within(() => {
             cy.findByPlaceholderText(
@@ -48,7 +48,7 @@ describe('Test login functionality', () => {
    after(() => {
       // Delete user
       cy.visit(configs.website);
-      cy.findByTestId(uiEl.auth.pages.loggedIn)
+      cy.findByTestId(uiEl.auth.pageId.loggedIn)
          .should('be.visible')
          .within(() => {
             cy.findByText(uiEl.auth.texts.titleLoggedIn).should('exist');
@@ -59,7 +59,7 @@ describe('Test login functionality', () => {
    });
 
    it('Can see login prompt', () => {
-      cy.findByTestId(uiEl.auth.pages.login)
+      cy.findByTestId(uiEl.auth.pageId.login)
          .should('be.visible')
          .within(() => {
             cy.contains(uiEl.auth.texts.titleLoginToAccount).should('exist');
@@ -77,7 +77,7 @@ describe('Test login functionality', () => {
    });
 
    it('Show error message when trying to login with account that does not exist', () => {
-      cy.findByTestId(uiEl.auth.pages.login)
+      cy.findByTestId(uiEl.auth.pageId.login)
          .should('be.visible')
          .within(() => {
             cy.findByPlaceholderText(
@@ -96,12 +96,12 @@ describe('Test login functionality', () => {
                .click()
                .end();
 
-            cy.contains(uiEl.auth.errors.genericError);
+            cy.contains(uiEl.auth.errors.userNotFound);
          });
    });
 
    it('Cannot press button until all fields are filled in', () => {
-      cy.findByTestId(uiEl.auth.pages.login)
+      cy.findByTestId(uiEl.auth.pageId.login)
          .should('be.visible')
          .within(() => {
             cy.findByPlaceholderText(
@@ -129,12 +129,12 @@ describe('Test login functionality', () => {
                .click()
                .end();
 
-            cy.contains(uiEl.auth.errors.genericError);
+            cy.contains(uiEl.auth.errors.userNotFound);
          });
    });
 
    it('Can login', () => {
-      cy.findByTestId(uiEl.auth.pages.login)
+      cy.findByTestId(uiEl.auth.pageId.login)
          .should('be.visible')
          .within(() => {
             cy.findByPlaceholderText(uiEl.auth.texts.placeholderEmailAddress)
@@ -154,10 +154,10 @@ describe('Test login functionality', () => {
                .end();
          });
 
-      cy.findByTestId(uiEl.auth.pages.loggedIn)
+      cy.findByTestId(uiEl.auth.pageId.loggedIn)
          .should('be.visible')
          .within(() => {
-            cy.contains('Logged in').should('exist');
+            cy.contains(uiEl.auth.texts.titleLoggedIn).should('exist');
          });
    });
 });

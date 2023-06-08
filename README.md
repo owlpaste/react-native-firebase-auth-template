@@ -17,6 +17,7 @@ The idea was to create a repository that can be forked and used to build project
 * Enter Firebase project id in `.firebaserc`
 * Enter details of the Firebase project into `config/firebase.js`
 * Setup [local firebase environment](https://firebase.google.com/docs/emulator-suite/install_and_configure)
+* **IMPORTANT** When using with a real project with a database, please make sure [to secure your firestore](https://firebase.google.com/docs/firestore/security/rules-structure).
 
 ## How to start
 
@@ -31,3 +32,8 @@ Start local firebase environment
 Start cypress tests
 
 `npx cypress open`
+
+## How to run tests
+
+Tun run a bunch of tests via cli, use
+`npx cypress run --spec "cypress/e2e/auth"`

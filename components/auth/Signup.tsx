@@ -7,10 +7,10 @@ import { styles } from '../../css/css';
 import { uiEl } from '../../config/common';
 
 function Signup({ navigation }: { navigation: any }) {
-   const [email, setEmail] = useState('');
-   const [password, setPassword] = useState('');
    const [confirmPassword, setConfirmPassword] = useState('');
-   const [error, setError] = useState(null || String);
+   const [email, setEmail] = useState('');
+   const [error, setError] = useState<null | string>(null);
+   const [password, setPassword] = useState('');
 
    const createAccount = async () => {
       try {
@@ -29,62 +29,61 @@ function Signup({ navigation }: { navigation: any }) {
          }
       }
    };
+   console.log('error: ', error);
 
    return (
-      <View style={styles.outer} testID={uiEl.auth.pages.signUp}>
-         <View style={styles.inner}>
+      <View style={styles.inner} testID={uiEl.auth.pageId.signUp}>
+         <View>
+            <Text style={styles.header}>{uiEl.auth.texts.titleSignup}</Text>
+         </View>
+
+         {error !== null && (
             <View>
-               <Text style={styles.header}>{uiEl.auth.texts.titleSignup}</Text>
+               <Text style={styles.error}>{error}</Text>
             </View>
+         )}
 
-            {error !== null && (
-               <View>
-                  <Text style={styles.error}>{error}</Text>
-               </View>
-            )}
+         <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+            <Text style={styles.link}>
+               {uiEl.auth.texts.loginExistingAccount}
+            </Text>
+         </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-               <Text style={styles.link}>
-                  {uiEl.auth.texts.loginExistingAccount}
-               </Text>
-            </TouchableOpacity>
-
-            <View>
-               <TextInput
-                  autoCapitalize='none'
-                  keyboardType='email-address'
-                  onChangeText={setEmail}
-                  placeholder={uiEl.auth.texts.placeholderEmailAddress}
-                  placeholderTextColor='#aaa'
-                  style={styles.input}
-                  value={email}
-               />
-               <TextInput
-                  autoCapitalize='none'
-                  onChangeText={setPassword}
-                  placeholder={uiEl.auth.texts.placeholderEnterPassword}
-                  placeholderTextColor='#aaa'
-                  secureTextEntry
-                  style={styles.input}
-                  value={password}
-               />
-               <TextInput
-                  autoCapitalize='none'
-                  onChangeText={setConfirmPassword}
-                  placeholder={uiEl.auth.texts.placeholderConfirmPassword}
-                  placeholderTextColor='#aaa'
-                  secureTextEntry
-                  style={styles.input}
-                  value={confirmPassword}
-               />
-            </View>
-
-            <Button
-               disabled={!email || !password || !confirmPassword}
-               onPress={createAccount}
-               title={uiEl.auth.texts.buttonCreateAccount}
+         <View>
+            <TextInput
+               autoCapitalize='none'
+               keyboardType='email-address'
+               onChangeText={setEmail}
+               placeholder={uiEl.auth.texts.placeholderEmailAddress}
+               placeholderTextColor='#aaa'
+               style={styles.input}
+               value={email}
+            />
+            <TextInput
+               autoCapitalize='none'
+               onChangeText={setPassword}
+               placeholder={uiEl.auth.texts.placeholderEnterPassword}
+               placeholderTextColor='#aaa'
+               secureTextEntry
+               style={styles.input}
+               value={password}
+            />
+            <TextInput
+               autoCapitalize='none'
+               onChangeText={setConfirmPassword}
+               placeholder={uiEl.auth.texts.placeholderConfirmPassword}
+               placeholderTextColor='#aaa'
+               secureTextEntry
+               style={styles.input}
+               value={confirmPassword}
             />
          </View>
+
+         <Button
+            disabled={!email || !password || !confirmPassword}
+            onPress={createAccount}
+            title={uiEl.auth.texts.buttonCreateAccount}
+         />
       </View>
    );
 }

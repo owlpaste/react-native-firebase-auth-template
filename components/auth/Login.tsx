@@ -23,6 +23,8 @@ function Login({ navigation }: { navigation: any }) {
             setError(uiEl.auth.errors.incorrectEmailOrPass);
          } else if (error.code === 'auth/email-already-in-use') {
             setError(uiEl.auth.errors.accountExists);
+         } else if (error.code === 'auth/user-not-found') {
+            setError(uiEl.auth.errors.userNotFound);
          } else {
             setError(`${uiEl.auth.errors.genericError} ${error.code}`);
          }
@@ -30,67 +32,56 @@ function Login({ navigation }: { navigation: any }) {
    };
 
    return (
-      <View style={styles.outer} testID={uiEl.auth.pages.login}>
-         <View style={styles.inner}>
+      <View style={styles.inner} testID={uiEl.auth.pageId.login}>
+         <View>
+            <Text style={styles.header}>
+               {uiEl.auth.texts.titleLoginToAccount}
+            </Text>
+         </View>
+
+         {error !== null && (
             <View>
-               <Text
-                  testID={uiEl.auth.selectors.textPageTitle}
-                  style={styles.header}
-               >
-                  {uiEl.auth.texts.titleLoginToAccount}
-               </Text>
+               <Text style={styles.error}>{error}</Text>
             </View>
+         )}
 
-            {error !== null && (
-               <View>
-                  <Text
-                     testID={uiEl.auth.selectors.textError}
-                     style={styles.error}
-                  >
-                     {error}
-                  </Text>
-               </View>
-            )}
-
+         <View style={styles.inputButton}>
             <Button
-               title={uiEl.auth.texts.buttonCreateAccount}
                onPress={() => navigation.navigate('Signup')}
+               title={uiEl.auth.texts.buttonCreateAccount}
             />
+         </View>
 
-            <TextInput
-               value={email}
-               onChangeText={setEmail}
-               keyboardType='email-address'
-               testID={uiEl.auth.selectors.inputEmailAddress}
-               placeholder={uiEl.auth.texts.placeholderEmailAddress}
-               autoCapitalize='none'
-               placeholderTextColor='#aaa'
-               style={styles.input}
-            />
-            <TextInput
-               value={password}
-               onChangeText={setPassword}
-               secureTextEntry
-               testID={uiEl.auth.selectors.inputPassword}
-               placeholder={uiEl.auth.texts.placeholderEnterPassword}
-               autoCapitalize='none'
-               placeholderTextColor='#aaa'
-               style={styles.input}
-            />
+         <TextInput
+            autoCapitalize='none'
+            keyboardType='email-address'
+            onChangeText={setEmail}
+            placeholder={uiEl.auth.texts.placeholderEmailAddress}
+            placeholderTextColor='#aaa'
+            style={styles.input}
+            value={email}
+         />
+         <TextInput
+            autoCapitalize='none'
+            onChangeText={setPassword}
+            placeholder={uiEl.auth.texts.placeholderEnterPassword}
+            placeholderTextColor='#aaa'
+            secureTextEntry
+            style={styles.input}
+            value={password}
+         />
 
-            <TouchableOpacity
-               onPress={() => navigation.navigate('ResetPassword')}
-            >
-               <Text style={[styles.link, { color: '#333' }]}>
-                  {uiEl.auth.texts.linkForgotPass}
-               </Text>
-            </TouchableOpacity>
+         <TouchableOpacity onPress={() => navigation.navigate('ResetPassword')}>
+            <Text style={[styles.link, { color: '#333' }]}>
+               {uiEl.auth.texts.linkForgotPass}
+            </Text>
+         </TouchableOpacity>
 
+         <View style={styles.inputButton}>
             <Button
-               title={uiEl.auth.texts.buttonLogin}
-               onPress={loginUser}
-               testID={uiEl.auth.selectors.buttonLogin}
                disabled={!email || !password}
+               onPress={loginUser}
+               title={uiEl.auth.texts.buttonLogin}
             />
          </View>
       </View>

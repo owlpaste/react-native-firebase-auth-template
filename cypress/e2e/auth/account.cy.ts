@@ -6,7 +6,7 @@ describe('Account related functionality', () => {
    before(() => {
       // Create a user
       cy.visit(configs.website);
-      cy.findByTestId(uiEl.auth.pages.login)
+      cy.findByTestId(uiEl.auth.pageId.login)
          .should('be.visible')
          .within(() => {
             cy.findByRole('button', {
@@ -14,7 +14,7 @@ describe('Account related functionality', () => {
             }).click();
          });
 
-      cy.findByTestId(uiEl.auth.pages.signUp)
+      cy.findByTestId(uiEl.auth.pageId.signUp)
          .should('be.visible')
          .within(() => {
             cy.findByPlaceholderText(
@@ -49,19 +49,19 @@ describe('Account related functionality', () => {
       // Delete user
       cy.visit(configs.website);
 
-      cy.findByTestId(uiEl.auth.pages.login)
+      cy.findByTestId(uiEl.auth.pageId.login)
          .should('be.visible')
          .within(() => {
             cy.findByPlaceholderText(
                uiEl.auth.texts.placeholderEmailAddress
             ).type(testData.correctEmailAddress, {
-               delay: configs.typingDelay,
+               delay: configs.typingDelayMs,
             });
 
             cy.findByPlaceholderText(
                uiEl.auth.texts.placeholderEnterPassword
             ).type(testData.correctPassword, {
-               delay: configs.typingDelay,
+               delay: configs.typingDelayMs,
             });
 
             cy.findByRole('button', {
@@ -69,7 +69,7 @@ describe('Account related functionality', () => {
             }).click();
          });
 
-      cy.findByTestId(uiEl.auth.pages.loggedIn)
+      cy.findByTestId(uiEl.auth.pageId.loggedIn)
          .should('be.visible')
          .within(() => {
             cy.findByText(uiEl.auth.texts.titleLoggedIn)
@@ -83,18 +83,18 @@ describe('Account related functionality', () => {
    });
 
    it('Wrong password entered', () => {
-      cy.findByTestId(uiEl.auth.pages.login)
+      cy.findByTestId(uiEl.auth.pageId.login)
          .should('be.visible')
          .within(() => {
             cy.findByPlaceholderText(
                uiEl.auth.texts.placeholderEmailAddress
             ).type(testData.correctEmailAddress, {
-               delay: configs.typingDelay,
+               delay: configs.typingDelayMs,
             });
             cy.findByPlaceholderText(
                uiEl.auth.texts.placeholderEnterPassword
             ).type(testData.incorrectPassword, {
-               delay: configs.typingDelay,
+               delay: configs.typingDelayMs,
             });
 
             cy.findByRole('button', {
@@ -107,7 +107,7 @@ describe('Account related functionality', () => {
    });
 
    it('Email already in use', () => {
-      cy.findByTestId(uiEl.auth.pages.login)
+      cy.findByTestId(uiEl.auth.pageId.login)
          .should('be.visible')
          .within(() => {
             cy.findByRole('button', {
@@ -118,23 +118,23 @@ describe('Account related functionality', () => {
                .end();
          });
 
-      cy.findByTestId(uiEl.auth.pages.signUp)
+      cy.findByTestId(uiEl.auth.pageId.signUp)
          .should('be.visible')
          .within(() => {
             cy.findByPlaceholderText(
                uiEl.auth.texts.placeholderEmailAddress
             ).type(testData.correctEmailAddress, {
-               delay: configs.typingDelay,
+               delay: configs.typingDelayMs,
             });
             cy.findByPlaceholderText(
                uiEl.auth.texts.placeholderEnterPassword
             ).type(testData.correctPassword, {
-               delay: configs.typingDelay,
+               delay: configs.typingDelayMs,
             });
             cy.findByPlaceholderText(
                uiEl.auth.texts.placeholderConfirmPassword
             ).type(testData.correctPassword, {
-               delay: configs.typingDelay,
+               delay: configs.typingDelayMs,
             });
 
             cy.findByRole('button', {
