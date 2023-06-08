@@ -44,7 +44,7 @@ export const uiEl = Object.freeze({
          placeholderEmailAddress: 'Enter email address',
          placeholderEnterPassword: 'Enter password',
          textPassReset: 'Please check your email for a reset password link.',
-         titleLoggedIn: 'Logged in',
+         titleLoggedIn: 'Manage account',
          titleLoginToAccount: 'Login to account',
          titleResetPass: 'Reset Password',
          titleSignup: 'Signup',
@@ -59,7 +59,7 @@ export const uiEl = Object.freeze({
          passwordsNotMatch: "Passwords don't match",
          userNotFound: 'User not found',
       },
-      pages: {
+      pageId: {
          login: 'login',
          signUp: 'sign-up',
          recoverPassword: 'recover-password',

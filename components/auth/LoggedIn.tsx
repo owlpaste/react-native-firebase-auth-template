@@ -7,13 +7,13 @@ import { styles } from '../../css/css';
 import { uiEl } from '../../config/common';
 
 function LoggedIn() {
-   const [error, setError] = useState(null || String);
+   const [error, setError] = useState<string | null>(null);
 
    const logout = async () => {
       try {
          await signOut(auth);
       } catch (e) {
-         console.error(e);
+         setError(`${uiEl.auth.errors.genericError} ${e}`);
       }
    };
 
@@ -23,7 +23,7 @@ function LoggedIn() {
             await deleteUser(auth.currentUser);
             await signOut(auth);
          } catch (e) {
-            console.error(e);
+            setError(`${uiEl.auth.errors.genericError}: ${e}`);
          }
       } else {
          setError(uiEl.auth.errors.notLoggedIn);
@@ -31,33 +31,26 @@ function LoggedIn() {
    };
 
    return (
-      <View
-         style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
-         testID={uiEl.auth.pages.loggedIn}
-      >
-         <Text testID={uiEl.auth.selectors.textPageTitle}>
-            {uiEl.auth.texts.titleLoggedIn}
-         </Text>
+      <View style={styles.inner} testID={uiEl.auth.pageId.loggedIn}>
+         <View>
+            <Text style={styles.header}>{uiEl.auth.texts.titleLoggedIn}</Text>
+         </View>
+
          {error !== null && (
             <View>
-               <Text
-                  testID={uiEl.auth.selectors.textError}
-                  style={styles.error}
-               >
-                  {error}
-               </Text>
+               <Text style={styles.error}>{error}</Text>
             </View>
          )}
-         <Button
-            testID={uiEl.auth.selectors.buttonLogout}
-            title={uiEl.auth.texts.buttonLogout}
-            onPress={logout}
-         />
-         <Button
-            testID={uiEl.auth.selectors.buttonDeleteAccount}
-            title={uiEl.auth.texts.buttonDeleteAccount}
-            onPress={deleteUserRequest}
-         />
+
+         <View style={styles.inputButton}>
+            <Button onPress={logout} title={uiEl.auth.texts.buttonLogout} />
+         </View>
+         <View style={styles.inputButton}>
+            <Button
+               onPress={deleteUserRequest}
+               title={uiEl.auth.texts.buttonDeleteAccount}
+            />
+         </View>
       </View>
    );
 }
