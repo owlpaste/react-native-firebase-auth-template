@@ -11,6 +11,13 @@ Based on a [tutorial](https://www.atomlab.dev/tutorials/email-authentication-rea
 
 The idea was to create a repository that can be forked and used to build projects that require a basic auth Firebase integration.
 
+### Images
+
+![Login screen](docs/login-screen.png)
+![Register new user account](docs/signup-screen.png)
+![Reset password](docs/reset-password.png)
+![Manage account](docs/manage-account.png)
+
 ## How to use
 
 * Fork this repository
@@ -29,11 +36,10 @@ Start local firebase environment
 
 `firebase emulators:start`
 
-Start cypress tests
+## Testing
 
+Start cypress tests via ui
 `npx cypress open`
 
-## How to run tests
-
-Tun run a bunch of tests via cli, use
+Or via cli
 `npx cypress run --spec "cypress/e2e/auth"`
