@@ -29,26 +29,22 @@ function Signup({ navigation }: { navigation: any }) {
          }
       }
    };
-   console.log('error: ', error);
 
    return (
       <View style={styles.inner} testID={uiEl.auth.pageId.signUp}>
          <View>
             <Text style={styles.header}>{uiEl.auth.texts.titleSignup}</Text>
          </View>
-
          {error !== null && (
             <View>
                <Text style={styles.error}>{error}</Text>
             </View>
          )}
-
          <TouchableOpacity onPress={() => navigation.navigate('Login')}>
             <Text style={styles.link}>
                {uiEl.auth.texts.loginExistingAccount}
             </Text>
          </TouchableOpacity>
-
          <View>
             <TextInput
                autoCapitalize='none'
@@ -79,11 +75,13 @@ function Signup({ navigation }: { navigation: any }) {
             />
          </View>
 
-         <Button
-            disabled={!email || !password || !confirmPassword}
-            onPress={createAccount}
-            title={uiEl.auth.texts.buttonCreateAccount}
-         />
+         <View style={styles.inputButton}>
+            <Button
+               disabled={!email || !password || !confirmPassword}
+               onPress={createAccount}
+               title={uiEl.auth.texts.buttonCreateAccount}
+            />
+         </View>
       </View>
    );
 }

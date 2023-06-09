@@ -55,13 +55,14 @@ function ResetPassword({ navigation }: { navigation: any }) {
                   testID={uiEl.auth.selectors.inputEmailAddress}
                   value={email}
                />
-
-               <Button
-                  disabled={!email}
-                  onPress={resetUserPassword}
-                  testID={uiEl.auth.selectors.buttonResetPass}
-                  title={uiEl.auth.texts.titleResetPass}
-               />
+               <View style={styles.inputButton}>
+                  <Button
+                     disabled={!email}
+                     onPress={resetUserPassword}
+                     testID={uiEl.auth.selectors.buttonResetPass}
+                     title={uiEl.auth.texts.titleResetPass}
+                  />
+               </View>
             </>
          )}
       </View>
