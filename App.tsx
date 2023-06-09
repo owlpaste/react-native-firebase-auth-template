@@ -13,10 +13,6 @@ import Signup from './components/auth/Signup';
 
 import { styles } from './css/css';
 
-export interface ScreenSetter {
-   (screen: string | null): void;
-}
-
 export default function App() {
    const [loggedIn, setLoggedIn] = useState(false);
 
