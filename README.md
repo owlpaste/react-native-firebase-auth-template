@@ -13,10 +13,17 @@ The idea was to create a repository that can be forked and used to build project
 
 ### Images
 
+Various screens:
+
 ![Login screen](docs/login-screen.png)
 ![Register new user account](docs/signup-screen.png)
+![Register new user account](docs/signup-screen-filled.png)
 ![Reset password](docs/reset-password.png)
 ![Manage account](docs/manage-account.png)
+
+Running cypress tests:
+
+![Cypress testing](docs/create-user-cypress.gif)
 
 ## How to use
 
@@ -38,8 +45,19 @@ Start local firebase environment
 
 ## Testing
 
+**!!IMPORTANT!!** Please do not run against production, user database is cleared before each test!
+
 Start cypress tests via ui
 `npx cypress open`
 
 Or via cli
 `npx cypress run --spec "cypress/e2e/auth"`
+
+There is also a simple shell script to run an "endurance test", which can be triggered and runs all feature files:
+`sh tools/cypress-endurance-test.sh <number of iterations>`
+
+Which will produce output similar to this:
+
+    $sh tools/cypress-endurance-tess.sh 5
+    All specs passed!: x5 times
+    Runtime: 0 hours 1 minutes 55 seconds
