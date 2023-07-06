@@ -4,11 +4,13 @@ import { View, Text } from "react-native";
 import { auth } from "../../config/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
+import { NotificationType } from "../common/types";
 import { styles } from "../../css/css";
 import { uiEl, configs } from "../../config/common";
 
 import CustomButton from "../common/CustomButton";
 import InputWithLabel from "../common/InputWithLabel";
+import Notification from "../common/Notification";
 
 function ScreenLogin({ navigation }: { navigation: any }) {
   const [email, setEmail] = useState("");
@@ -46,18 +48,11 @@ function ScreenLogin({ navigation }: { navigation: any }) {
       <View>
         <Text style={styles.header}>{uiEl.auth.texts.titleLoginToAccount}</Text>
       </View>
-
-      {error !== null && (
-        <View>
-          <Text style={styles.error}>{error}</Text>
-        </View>
-      )}
-
+      <Notification type={NotificationType.error} message={error} />
       <CustomButton
         onPress={() => navigation.navigate(configs.pagesUrl.auth.signup)}
         title={uiEl.auth.texts.buttonCreateAccount}
       />
-
       <InputWithLabel
         autoCapitalize="none"
         kbdType="email-address"
@@ -76,7 +71,6 @@ function ScreenLogin({ navigation }: { navigation: any }) {
         secureTextEntry={true}
         value={password}
       />
-
       <CustomButton
         onPress={() => navigation.navigate(configs.pagesUrl.auth.recoverPassword)}
         title={uiEl.auth.texts.linkForgotPass}

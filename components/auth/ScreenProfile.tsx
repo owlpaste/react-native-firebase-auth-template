@@ -4,10 +4,12 @@ import { View, Text } from "react-native";
 import { auth } from "../../config/firebase";
 import { deleteUser, signOut } from "firebase/auth";
 
+import { NotificationType } from "../common/types";
 import { styles } from "../../css/css";
 import { uiEl } from "../../config/common";
 
 import CustomButton from "../common/CustomButton";
+import Notification from "../common/Notification";
 
 function ScreenProfile() {
   const [error, setError] = useState<string | null>(null);
@@ -39,11 +41,7 @@ function ScreenProfile() {
         <Text style={styles.header}>{uiEl.auth.texts.titleLoggedIn}</Text>
       </View>
 
-      {error !== null && (
-        <View>
-          <Text style={styles.error}>{error}</Text>
-        </View>
-      )}
+      <Notification type={NotificationType.error} message={error} />
 
       <CustomButton title={uiEl.auth.texts.buttonDeleteAccount} onPress={deleteUserRequest} />
       <CustomButton title={uiEl.auth.texts.buttonLogout} onPress={logout} />
