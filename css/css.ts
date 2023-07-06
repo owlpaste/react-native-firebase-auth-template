@@ -18,17 +18,4 @@ export const styles = StyleSheet.create({
     marginTop: "1em",
     textAlign: "center",
   },
-  error: {
-    backgroundColor: "#cc2a24",
-    borderColor: "#ccc",
-    borderRadius: 4,
-    borderWidth: 1,
-    boxSizing: "border-box",
-    color: "white",
-    marginBottom: "1em",
-    overflowWrap: "break-word",
-    paddingVertical: 8,
-    textAlign: "center",
-    wordWrap: "break-word",
-  },
 });

@@ -4,11 +4,13 @@ import { View, Text } from "react-native";
 import { auth } from "../../config/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
-import { styles } from "../../css/css";
 import { configs, uiEl } from "../../config/common";
+import { NotificationType } from "../common/types";
+import { styles } from "../../css/css";
 
 import CustomButton from "../common/CustomButton";
 import InputWithLabel from "../common/InputWithLabel";
+import Notification from "../common/Notification";
 
 function ScreenSignup({ navigation }: { navigation: any }) {
   const [confirmPassword, handleSetConfirmPassword] = useState("");
@@ -41,11 +43,9 @@ function ScreenSignup({ navigation }: { navigation: any }) {
       <View>
         <Text style={styles.header}>{uiEl.auth.texts.titleSignup}</Text>
       </View>
-      {error !== null && (
-        <View>
-          <Text style={styles.error}>{error}</Text>
-        </View>
-      )}
+
+      <Notification type={NotificationType.error} message={error} />
+
       <CustomButton
         onPress={() => navigation.navigate(configs.pagesUrl.auth.login)}
         title={uiEl.auth.texts.loginExistingAccount}
