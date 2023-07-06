@@ -1,14 +1,14 @@
 import React from "react";
-import { View, StyleSheet, Button } from "react-native";
+import { Button, StyleSheet, View } from "react-native";
 
 const CustomButton = ({
+  disabled,
   onPress,
   title,
-  disabled,
 }: {
+  disabled?: any;
   onPress: () => void;
   title: string;
-  disabled?: any;
 }) => {
   return (
     <View style={styles.inputButton}>
@@ -25,13 +25,13 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "#FFFFFF",
-    paddingVertical: 10,
-    paddingHorizontal: 20,
     borderRadius: 5,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
   },
   buttonText: {
-    fontSize: 16,
     color: "#000000",
+    fontSize: 16,
   },
   link: {
     color: "blue",

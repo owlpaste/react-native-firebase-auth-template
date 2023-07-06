@@ -1,12 +1,12 @@
 import React, { useRef, useState } from "react";
 import {
   Animated,
-  TextInput,
-  View,
-  Text,
-  StyleSheet,
   KeyboardTypeOptions,
+  StyleSheet,
+  Text,
+  TextInput,
   TextInputProps,
+  View,
 } from "react-native";
 
 const InputWithLabel = ({
@@ -35,8 +35,8 @@ const InputWithLabel = ({
 
   const handleFocus = () => {
     Animated.timing(labelAnimation, {
-      toValue: 1,
       duration: 200,
+      toValue: 1,
       useNativeDriver: false,
     }).start();
     setIsFocused(true);
@@ -45,8 +45,8 @@ const InputWithLabel = ({
   const handleBlur = () => {
     if (!value) {
       Animated.timing(labelAnimation, {
-        toValue: 0,
         duration: 200,
+        toValue: 0,
         useNativeDriver: false,
       }).start();
     }
@@ -99,28 +99,28 @@ const styles = StyleSheet.create({
     paddingTop: "1em",
   },
   label: {
+    fontColor: "#ccc",
+    fontWeight: "normal",
+    left: 20,
     position: "absolute",
     top: "1em",
-    left: 20,
-    fontWeight: "normal",
-    fontColor: "#ccc",
   },
   beforeLabel: {},
   input: {
     backgroundColor: "white",
-    placeholderColor: "red",
     borderColor: "#ccc",
     borderRadius: 4,
     borderWidth: 1,
     marginBottom: "1em",
     paddingHorizontal: 12,
     paddingVertical: 8,
+    placeholderColor: "red",
   },
   requiredIndicator: {
-    fontWeight: "700",
-    fontSize: 16,
-    lineHeight: 20,
     color: "#d2242f",
+    fontSize: 16,
+    fontWeight: "700",
+    lineHeight: 20,
     marginRight: 3,
     verticalAlign: "middle",
   },
