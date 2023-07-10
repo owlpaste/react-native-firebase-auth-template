@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 
 import { auth } from "../../config/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
@@ -11,6 +11,7 @@ import { styles } from "../../css/css";
 import CustomButton from "../common/CustomButton";
 import InputWithLabel from "../common/InputWithLabel";
 import Notification from "../common/Notification";
+import PageTitle from "../common/PageTitle";
 
 function ScreenSignup({ navigation }: { navigation: any }) {
   const [confirmPassword, handleSetConfirmPassword] = useState("");
@@ -40,9 +41,7 @@ function ScreenSignup({ navigation }: { navigation: any }) {
 
   return (
     <View style={styles.inner}>
-      <View>
-        <Text style={styles.header}>{uiEl.auth.texts.titleSignup}</Text>
-      </View>
+      <PageTitle title={uiEl.auth.texts.titleSignup} />
 
       <Notification type={NotificationType.error} message={error} />
 

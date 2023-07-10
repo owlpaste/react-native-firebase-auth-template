@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 
 import { auth } from "../../config/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -11,6 +11,7 @@ import { uiEl, configs } from "../../config/common";
 import CustomButton from "../common/CustomButton";
 import InputWithLabel from "../common/InputWithLabel";
 import Notification from "../common/Notification";
+import PageTitle from "../common/PageTitle";
 
 function ScreenLogin({ navigation }: { navigation: any }) {
   const [email, setEmail] = useState("");
@@ -45,14 +46,15 @@ function ScreenLogin({ navigation }: { navigation: any }) {
 
   return (
     <View style={styles.inner}>
-      <View>
-        <Text style={styles.header}>{uiEl.auth.texts.titleLoginToAccount}</Text>
-      </View>
+      <PageTitle title={uiEl.auth.texts.titleLoginToAccount} />
+
       <Notification type={NotificationType.error} message={error} />
+
       <CustomButton
         onPress={() => navigation.navigate(configs.pagesUrl.auth.signup)}
         title={uiEl.auth.texts.buttonCreateAccount}
       />
+
       <InputWithLabel
         autoCapitalize="none"
         kbdType="email-address"
@@ -62,6 +64,7 @@ function ScreenLogin({ navigation }: { navigation: any }) {
         required={true}
         value={email}
       />
+
       <InputWithLabel
         kbdType="default"
         labelText={uiEl.auth.texts.placeholderEnterPassword}
@@ -71,10 +74,12 @@ function ScreenLogin({ navigation }: { navigation: any }) {
         secureTextEntry={true}
         value={password}
       />
+
       <CustomButton
         onPress={() => navigation.navigate(configs.pagesUrl.auth.recoverPassword)}
         title={uiEl.auth.texts.linkForgotPass}
       />
+
       <CustomButton
         disabled={isButtonDisabled}
         onPress={loginUser}
