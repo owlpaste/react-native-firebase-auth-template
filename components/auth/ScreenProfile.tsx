@@ -10,6 +10,7 @@ import { uiEl } from "../../config/common";
 
 import CustomButton from "../common/CustomButton";
 import Notification from "../common/Notification";
+import PageTitle from "../common/PageTitle";
 
 function ScreenProfile() {
   const [error, setError] = useState<string | null>(null);
@@ -37,13 +38,12 @@ function ScreenProfile() {
 
   return (
     <View style={styles.inner}>
-      <View>
-        <Text style={styles.header}>{uiEl.auth.texts.titleLoggedIn}</Text>
-      </View>
+      <PageTitle title={uiEl.auth.texts.titleLoggedIn} />
 
       <Notification type={NotificationType.error} message={error} />
 
       <CustomButton title={uiEl.auth.texts.buttonDeleteAccount} onPress={deleteUserRequest} />
+
       <CustomButton title={uiEl.auth.texts.buttonLogout} onPress={logout} />
     </View>
   );

@@ -11,6 +11,7 @@ import { styles } from "../../css/css";
 import CustomButton from "../common/CustomButton";
 import InputWithLabel from "../common/InputWithLabel";
 import Notification from "../common/Notification";
+import PageTitle from "../common/PageTitle";
 
 function ScreenResetPassword({ navigation }: { navigation: any }) {
   const [email, handleSetEmail] = useState("");
@@ -35,9 +36,7 @@ function ScreenResetPassword({ navigation }: { navigation: any }) {
 
   return (
     <View style={styles.inner}>
-      <View>
-        <Text style={styles.header}>{uiEl.auth.texts.titleResetPass}</Text>
-      </View>
+      <PageTitle title={uiEl.auth.texts.titleResetPass} />
 
       <Notification type={NotificationType.error} message={error} />
 
