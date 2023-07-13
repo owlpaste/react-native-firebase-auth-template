@@ -45,47 +45,49 @@ function ScreenLogin({ navigation }: { navigation: any }) {
   const isButtonDisabled = !email || !password;
 
   return (
-    <View style={styles.inner}>
+    <>
       <PageTitle title={uiEl.auth.texts.titleLoginToAccount} />
 
-      <Notification type={NotificationType.error} message={error} />
+      <View style={styles.containerSmall}>
+        <Notification type={NotificationType.error} message={error} />
 
-      <CustomButton
-        onPress={() => navigation.navigate(configs.pagesUrl.auth.signup)}
-        title={uiEl.auth.texts.buttonCreateAccount}
-      />
+        <CustomButton
+          onPress={() => navigation.navigate(configs.pagesUrl.auth.signup)}
+          title={uiEl.auth.texts.buttonCreateAccount}
+        />
 
-      <InputWithLabel
-        autoCapitalize="none"
-        kbdType="email-address"
-        labelText={uiEl.auth.texts.placeholderEmailAddress}
-        onChange={handleEmailChange}
-        placeholder={uiEl.auth.texts.placeholderEmailAddress}
-        required={true}
-        value={email}
-      />
+        <InputWithLabel
+          autoCapitalize="none"
+          kbdType="email-address"
+          labelText={uiEl.auth.texts.placeholderEmailAddress}
+          onChange={handleEmailChange}
+          placeholder={uiEl.auth.texts.placeholderEmailAddress}
+          required={true}
+          value={email}
+        />
 
-      <InputWithLabel
-        kbdType="default"
-        labelText={uiEl.auth.texts.placeholderEnterPassword}
-        onChange={handleSetPassword}
-        placeholder={uiEl.auth.texts.placeholderEnterPassword}
-        required={true}
-        secureTextEntry={true}
-        value={password}
-      />
+        <InputWithLabel
+          kbdType="default"
+          labelText={uiEl.auth.texts.placeholderEnterPassword}
+          onChange={handleSetPassword}
+          placeholder={uiEl.auth.texts.placeholderEnterPassword}
+          required={true}
+          secureTextEntry={true}
+          value={password}
+        />
 
-      <CustomButton
-        onPress={() => navigation.navigate(configs.pagesUrl.auth.recoverPassword)}
-        title={uiEl.auth.texts.linkForgotPass}
-      />
+        <CustomButton
+          onPress={() => navigation.navigate(configs.pagesUrl.auth.recoverPassword)}
+          title={uiEl.auth.texts.linkForgotPass}
+        />
 
-      <CustomButton
-        disabled={isButtonDisabled}
-        onPress={loginUser}
-        title={uiEl.auth.texts.buttonLogin}
-      />
-    </View>
+        <CustomButton
+          disabled={isButtonDisabled}
+          onPress={loginUser}
+          title={uiEl.auth.texts.buttonLogin}
+        />
+      </View>
+    </>
   );
 }
 

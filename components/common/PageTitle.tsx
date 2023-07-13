@@ -7,8 +7,8 @@ interface TitleProps {
 
 function PageTitle({ title }: TitleProps) {
   return (
-    <View>
-      <Text style={styles.header}>{title}</Text>
+    <View style={styles.pageHeader}>
+      <Text style={styles.pageTitle}>{title}</Text>
     </View>
   );
 }
@@ -16,11 +16,13 @@ function PageTitle({ title }: TitleProps) {
 export default PageTitle;
 
 const styles = StyleSheet.create({
-  header: {
-    fontSize: 24,
+  pageTitle: {
+    fontSize: 60,
     fontWeight: "bold",
+    textAlign: "center",
+  },
+  pageHeader: {
     marginBottom: "2em",
     marginTop: "1em",
-    textAlign: "center",
   },
 });

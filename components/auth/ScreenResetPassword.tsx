@@ -35,39 +35,40 @@ function ScreenResetPassword({ navigation }: { navigation: any }) {
   const disabled = !email;
 
   return (
-    <View style={styles.inner}>
+    <>
       <PageTitle title={uiEl.auth.texts.titleResetPass} />
+      <View style={styles.container}>
+        <Notification type={NotificationType.error} message={error} />
 
-      <Notification type={NotificationType.error} message={error} />
+        <CustomButton
+          onPress={() => navigation.navigate(configs.pagesUrl.auth.login)}
+          title={uiEl.auth.texts.linkBackToLogin}
+        />
 
-      <CustomButton
-        onPress={() => navigation.navigate(configs.pagesUrl.auth.login)}
-        title={uiEl.auth.texts.linkBackToLogin}
-      />
+        {submitted ? (
+          <Text>{uiEl.auth.texts.textPassReset}</Text>
+        ) : (
+          <>
+            <InputWithLabel
+              autoCapitalize="none"
+              kbdType="default"
+              labelText={uiEl.auth.texts.placeholderEmailAddress}
+              onChange={handleSetEmail}
+              placeholder={uiEl.auth.texts.placeholderEmailAddress}
+              required={true}
+              secureTextEntry={true}
+              value={email}
+            />
 
-      {submitted ? (
-        <Text>{uiEl.auth.texts.textPassReset}</Text>
-      ) : (
-        <>
-          <InputWithLabel
-            autoCapitalize="none"
-            kbdType="default"
-            labelText={uiEl.auth.texts.placeholderEmailAddress}
-            onChange={handleSetEmail}
-            placeholder={uiEl.auth.texts.placeholderEmailAddress}
-            required={true}
-            secureTextEntry={true}
-            value={email}
-          />
-
-          <CustomButton
-            disabled={disabled}
-            onPress={resetUserPassword}
-            title={uiEl.auth.texts.titleResetPass}
-          />
-        </>
-      )}
-    </View>
+            <CustomButton
+              disabled={disabled}
+              onPress={resetUserPassword}
+              title={uiEl.auth.texts.titleResetPass}
+            />
+          </>
+        )}
+      </View>
+    </>
   );
 }
 

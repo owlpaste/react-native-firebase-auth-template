@@ -58,6 +58,18 @@ Then("I should see a screen title {string}", (title: string) => {
   cy.contains(title).should("exist").should("be.visible");
 });
 
+Then("I should see the following text on the page: {string}", (text: string) => {
+  cy.contains(text).should("exist").should("be.visible");
+});
+
+Then("I should see a {string} label", (labelTitle: string) => {
+  cy.contains(labelTitle).should("exist").should("be.visible");
+});
+
+Then("I know there is a {string} label", (labelTitle: string) => {
+  cy.contains(labelTitle).should("exist").should("not.be.visible");
+});
+
 Then("I should see an error message: {string}", (errorMsg: string) => {
   cy.contains(errorMsg).should("exist").should("be.visible");
 });
