@@ -14,9 +14,14 @@ Feature: Authentication - screens
     When I visit "sign-up" screen
     Then I should see a screen title "Create account"
     And I should see a "Create account" button in "disabled" state
+    And I should see an input with a "Public profile name" placeholder
+    And I know there is a "Display name" label
     And I should see an input with a "Enter email address" placeholder
+    And I know there is a "Email address" label
     And I should see an input with a "Enter password" placeholder
+    And I know there is a "Password" label
     And I should see an input with a "Confirm password" placeholder
+    And I know there is a "Confirm password" label
     And I should see a link "Login to existing account"
 
   Scenario: Can visit reset password screen

@@ -4,7 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { View } from "react-native";
 
 import { auth } from "./config/firebase";
-import { onAuthStateChanged } from "firebase/auth";
+import { onIdTokenChanged } from "firebase/auth";
 
 import ScreenLogin from "./components/auth/ScreenLogin";
 import ScreenNotFound from "./components/common/ScreenNotFound";
@@ -19,14 +19,16 @@ export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onIdTokenChanged(auth, (user) => {
       if (user) {
         setLoggedIn(true);
       } else {
         setLoggedIn(false);
       }
     });
-  }, []);
+
+    return () => unsubscribe();
+  }, [loggedIn]);
 
   const Stack = createNativeStackNavigator();
 
@@ -44,7 +46,7 @@ export default function App() {
   };
 
   return (
-    <View style={styles.outer}>
+    <View style={styles.contentPage}>
       <NavigationContainer linking={linking}>
         <Stack.Navigator
           screenOptions={{

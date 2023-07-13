@@ -9,16 +9,15 @@ import PageTitle from "./PageTitle";
 
 function ScreenNotFound({ navigation }: { navigation: any }) {
   return (
-    <View style={styles.inner}>
-      <View>
-        <PageTitle title={uiEl.common.texts.titlePageNotFound} />
-
+    <>
+      <PageTitle title={uiEl.common.texts.titlePageNotFound} />
+      <View style={styles.container}>
         <CustomButton
           title={uiEl.auth.texts.linkBackToLogin}
           onPress={() => navigation.navigate(configs.pagesUrl.auth.login)}
         />
       </View>
-    </View>
+    </>
   );
 }
 
